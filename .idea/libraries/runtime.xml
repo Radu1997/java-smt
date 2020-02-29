@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="runtime">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/common.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/scala-parser-combinators_2.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/java-cup-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/com.microsoft.z3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/animal-sniffer-annotations.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/princess-parser_2.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/spotbugs-annotations.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/jsr305.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/failureaccess.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/guava.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/princess_2.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/checker-qual.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/CVC4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/j2objc-annotations.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/princess-smt-parser_2.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/smtinterpol.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/error_prone_annotations.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/listenablefuture.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java/runtime/scala-library.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

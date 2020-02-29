@@ -344,5 +344,6 @@ public class UfElimination {
     abstract ImmutableList<Formula> getArguments();
 
     abstract Formula getSubstitution();
+
   }
 }
