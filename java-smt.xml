@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="java-smt" default="all">
+  
+  
+  <property file="java-smt.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.klib"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.11" value="${jdk.home.11}/bin"/>
+  <path id="jdk.classpath.11">
+    <fileset dir="${jdk.home.11}">
+      <include name="../java-11-openjdk-i386!/java.base"/>
+      <include name="../java-11-openjdk-i386!/java.compiler"/>
+      <include name="../java-11-openjdk-i386!/java.datatransfer"/>
+      <include name="../java-11-openjdk-i386!/java.desktop"/>
+      <include name="../java-11-openjdk-i386!/java.instrument"/>
+      <include name="../java-11-openjdk-i386!/java.logging"/>
+      <include name="../java-11-openjdk-i386!/java.management"/>
+      <include name="../java-11-openjdk-i386!/java.management.rmi"/>
+      <include name="../java-11-openjdk-i386!/java.naming"/>
+      <include name="../java-11-openjdk-i386!/java.net.http"/>
+      <include name="../java-11-openjdk-i386!/java.prefs"/>
+      <include name="../java-11-openjdk-i386!/java.rmi"/>
+      <include name="../java-11-openjdk-i386!/java.scripting"/>
+      <include name="../java-11-openjdk-i386!/java.se"/>
+      <include name="../java-11-openjdk-i386!/java.security.jgss"/>
+      <include name="../java-11-openjdk-i386!/java.security.sasl"/>
+      <include name="../java-11-openjdk-i386!/java.smartcardio"/>
+      <include name="../java-11-openjdk-i386!/java.sql"/>
+      <include name="../java-11-openjdk-i386!/java.sql.rowset"/>
+      <include name="../java-11-openjdk-i386!/java.transaction.xa"/>
+      <include name="../java-11-openjdk-i386!/java.xml"/>
+      <include name="../java-11-openjdk-i386!/java.xml.crypto"/>
+      <include name="../java-11-openjdk-i386!/jdk.accessibility"/>
+      <include name="../java-11-openjdk-i386!/jdk.attach"/>
+      <include name="../java-11-openjdk-i386!/jdk.charsets"/>
+      <include name="../java-11-openjdk-i386!/jdk.compiler"/>
+      <include name="../java-11-openjdk-i386!/jdk.crypto.cryptoki"/>
+      <include name="../java-11-openjdk-i386!/jdk.crypto.ec"/>
+      <include name="../java-11-openjdk-i386!/jdk.dynalink"/>
+      <include name="../java-11-openjdk-i386!/jdk.editpad"/>
+      <include name="../java-11-openjdk-i386!/jdk.hotspot.agent"/>
+      <include name="../java-11-openjdk-i386!/jdk.httpserver"/>
+      <include name="../java-11-openjdk-i386!/jdk.internal.ed"/>
+      <include name="../java-11-openjdk-i386!/jdk.internal.jvmstat"/>
+      <include name="../java-11-openjdk-i386!/jdk.internal.le"/>
+      <include name="../java-11-openjdk-i386!/jdk.internal.opt"/>
+      <include name="../java-11-openjdk-i386!/jdk.jartool"/>
+      <include name="../java-11-openjdk-i386!/jdk.javadoc"/>
+      <include name="../java-11-openjdk-i386!/jdk.jcmd"/>
+      <include name="../java-11-openjdk-i386!/jdk.jconsole"/>
+      <include name="../java-11-openjdk-i386!/jdk.jdeps"/>
+      <include name="../java-11-openjdk-i386!/jdk.jdi"/>
+      <include name="../java-11-openjdk-i386!/jdk.jdwp.agent"/>
+      <include name="../java-11-openjdk-i386!/jdk.jfr"/>
+      <include name="../java-11-openjdk-i386!/jdk.jlink"/>
+      <include name="../java-11-openjdk-i386!/jdk.jshell"/>
+      <include name="../java-11-openjdk-i386!/jdk.jsobject"/>
+      <include name="../java-11-openjdk-i386!/jdk.jstatd"/>
+      <include name="../java-11-openjdk-i386!/jdk.localedata"/>
+      <include name="../java-11-openjdk-i386!/jdk.management"/>
+      <include name="../java-11-openjdk-i386!/jdk.management.agent"/>
+      <include name="../java-11-openjdk-i386!/jdk.management.jfr"/>
+      <include name="../java-11-openjdk-i386!/jdk.naming.dns"/>
+      <include name="../java-11-openjdk-i386!/jdk.naming.rmi"/>
+      <include name="../java-11-openjdk-i386!/jdk.net"/>
+      <include name="../java-11-openjdk-i386!/jdk.pack"/>
+      <include name="../java-11-openjdk-i386!/jdk.rmic"/>
+      <include name="../java-11-openjdk-i386!/jdk.scripting.nashorn"/>
+      <include name="../java-11-openjdk-i386!/jdk.scripting.nashorn.shell"/>
+      <include name="../java-11-openjdk-i386!/jdk.sctp"/>
+      <include name="../java-11-openjdk-i386!/jdk.security.auth"/>
+      <include name="../java-11-openjdk-i386!/jdk.security.jgss"/>
+      <include name="../java-11-openjdk-i386!/jdk.unsupported"/>
+      <include name="../java-11-openjdk-i386!/jdk.unsupported.desktop"/>
+      <include name="../java-11-openjdk-i386!/jdk.xml.dom"/>
+      <include name="../java-11-openjdk-i386!/jdk.zipfs"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.11}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.11}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.11"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.build.classpath">
+    <pathelement location="${basedir}/lib/java/build/animal-sniffer-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/build/ant-junit.jar"/>
+    <pathelement location="${basedir}/lib/java/build/ant-junit4.jar"/>
+    <pathelement location="${basedir}/lib/java/build/asm-analysis.jar"/>
+    <pathelement location="${basedir}/lib/java/build/asm-commons.jar"/>
+    <pathelement location="${basedir}/lib/java/build/asm-tree.jar"/>
+    <pathelement location="${basedir}/lib/java/build/asm.jar"/>
+    <pathelement location="${basedir}/lib/java/build/auto-common.jar"/>
+    <pathelement location="${basedir}/lib/java/build/auto-value-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/build/auto-value.jar"/>
+    <pathelement location="${basedir}/lib/java/build/caffeine.jar"/>
+    <pathelement location="${basedir}/lib/java/build/checker-qual.jar"/>
+    <pathelement location="${basedir}/lib/java/build/dataflow.jar"/>
+    <pathelement location="${basedir}/lib/java/build/diffutils.jar"/>
+    <pathelement location="${basedir}/lib/java/build/ecj.jar"/>
+    <pathelement location="${basedir}/lib/java/build/error_prone_annotation.jar"/>
+    <pathelement location="${basedir}/lib/java/build/error_prone_annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/build/error_prone_check_api.jar"/>
+    <pathelement location="${basedir}/lib/java/build/error_prone_core.jar"/>
+    <pathelement location="${basedir}/lib/java/build/error_prone_type_annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/build/failureaccess.jar"/>
+    <pathelement location="${basedir}/lib/java/build/guava.jar"/>
+    <pathelement location="${basedir}/lib/java/build/ivy.jar"/>
+    <pathelement location="${basedir}/lib/java/build/j2objc-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/build/jFormatString.jar"/>
+    <pathelement location="${basedir}/lib/java/build/javac.jar"/>
+    <pathelement location="${basedir}/lib/java/build/javacutil.jar"/>
+    <pathelement location="${basedir}/lib/java/build/jsr305.jar"/>
+    <pathelement location="${basedir}/lib/java/build/listenablefuture.jar"/>
+    <pathelement location="${basedir}/lib/java/build/org.jacoco.agent.jar"/>
+    <pathelement location="${basedir}/lib/java/build/org.jacoco.ant.jar"/>
+    <pathelement location="${basedir}/lib/java/build/org.jacoco.core.jar"/>
+    <pathelement location="${basedir}/lib/java/build/org.jacoco.report.jar"/>
+    <pathelement location="${basedir}/lib/java/build/pcollections.jar"/>
+    <pathelement location="${basedir}/lib/java/build/plume-util.jar"/>
+    <pathelement location="${basedir}/lib/java/build/protobuf-java.jar"/>
+    <pathelement location="${basedir}/lib/java/build/reflection-util.jar"/>
+    <pathelement location="${basedir}/lib/java/build/require-javadoc.jar"/>
+    <pathelement location="${basedir}/lib/java/build/software-and-algorithms.jar"/>
+  </path>
+  
+  <path id="library.checkstyle.classpath">
+    <pathelement location="${basedir}/lib/java/checkstyle/Saxon-HE.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/antlr.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/antlr4-runtime.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/checker-qual.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/checkstyle.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/commons-beanutils.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/commons-collections.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/commons-logging.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/error_prone_annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/failureaccess.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/guava.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/j2objc-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/jcip-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/jsr305.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/listenablefuture.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/picocli.jar"/>
+    <pathelement location="${basedir}/lib/java/checkstyle/sevntu-checks.jar"/>
+  </path>
+  
+  <path id="library.format-source.classpath">
+    <pathelement location="${basedir}/lib/java/format-source/animal-sniffer-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/checker-qual.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/error_prone_annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/failureaccess.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/google-java-format.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/guava.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/j2objc-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/javac-shaded.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/jsr305.jar"/>
+    <pathelement location="${basedir}/lib/java/format-source/listenablefuture.jar"/>
+  </path>
+  
+  <path id="library.runtime.classpath">
+    <pathelement location="${basedir}/lib/java/runtime/CVC4.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/animal-sniffer-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/checker-qual.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/com.microsoft.z3.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/common.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/error_prone_annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/failureaccess.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/guava.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/j2objc-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/java-cup-runtime.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/jsr305.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/listenablefuture.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/princess-parser_2.12.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/princess-smt-parser_2.12.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/princess_2.12.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/scala-library.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/scala-parser-combinators_2.12.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/smtinterpol.jar"/>
+    <pathelement location="${basedir}/lib/java/runtime/spotbugs-annotations.jar"/>
+  </path>
+  
+  <path id="library.spotbugs.classpath">
+    <pathelement location="${basedir}/lib/java/spotbugs/asm-analysis.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/asm-commons.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/asm-tree.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/asm-util.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/asm.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/bcel.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/commons-lang.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/dom4j.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/jaxen.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/jcip-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/jsr305.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/slf4j-api.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/spotbugs-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/spotbugs-ant.jar"/>
+    <pathelement location="${basedir}/lib/java/spotbugs/spotbugs.jar"/>
+  </path>
+  
+  <path id="library.test.classpath">
+    <pathelement location="${basedir}/lib/java/test/animal-sniffer-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/test/auto-value-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/test/checker-compat-qual.jar"/>
+    <pathelement location="${basedir}/lib/java/test/checker-qual.jar"/>
+    <pathelement location="${basedir}/lib/java/test/diffutils.jar"/>
+    <pathelement location="${basedir}/lib/java/test/error_prone_annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/test/failureaccess.jar"/>
+    <pathelement location="${basedir}/lib/java/test/guava-testlib.jar"/>
+    <pathelement location="${basedir}/lib/java/test/guava.jar"/>
+    <pathelement location="${basedir}/lib/java/test/hamcrest-core.jar"/>
+    <pathelement location="${basedir}/lib/java/test/j2objc-annotations.jar"/>
+    <pathelement location="${basedir}/lib/java/test/jsr305.jar"/>
+    <pathelement location="${basedir}/lib/java/test/junit.jar"/>
+    <pathelement location="${basedir}/lib/java/test/listenablefuture.jar"/>
+    <pathelement location="${basedir}/lib/java/test/truth-java8-extension.jar"/>
+    <pathelement location="${basedir}/lib/java/test/truth.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <fileset dir="${javac2.home}">
+      <include name="javac2.jar"/>
+      <include name="jdom.jar"/>
+      <include name="asm-all*.jar"/>
+      <include name="forms-*.jar"/>
+    </fileset>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_java-smt.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.java-smt" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.java-smt" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

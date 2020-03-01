@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_java-smt" default="compile.module.java-smt">
+  <dirname property="module.java-smt.basedir" file="${ant.file.module_java-smt}"/>
+  
+  <property name="module.jdk.home.java-smt" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.java-smt" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.java-smt" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.java-smt" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="java-smt.output.dir" value="${module.java-smt.basedir}/out/production/java-smt"/>
+  <property name="java-smt.testoutput.dir" value="${module.java-smt.basedir}/out/test/java-smt"/>
+  
+  <path id="java-smt.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="java-smt.module.production.classpath">
+    <path refid="${module.jdk.classpath.java-smt}"/>
+    <path refid="library.spotbugs.classpath"/>
+    <path refid="library.test.classpath"/>
+    <path refid="library.format-source.classpath"/>
+    <path refid="library.build.classpath"/>
+    <path refid="library.checkstyle.classpath"/>
+    <path refid="library.runtime.classpath"/>
+  </path>
+  
+  <path id="java-smt.runtime.production.module.classpath">
+    <pathelement location="${java-smt.output.dir}"/>
+    <path refid="library.spotbugs.classpath"/>
+    <path refid="library.test.classpath"/>
+    <path refid="library.format-source.classpath"/>
+    <path refid="library.build.classpath"/>
+    <path refid="library.checkstyle.classpath"/>
+    <path refid="library.runtime.classpath"/>
+  </path>
+  
+  <path id="java-smt.module.classpath">
+    <path refid="${module.jdk.classpath.java-smt}"/>
+    <pathelement location="${java-smt.output.dir}"/>
+    <path refid="library.spotbugs.classpath"/>
+    <path refid="library.test.classpath"/>
+    <path refid="library.format-source.classpath"/>
+    <path refid="library.build.classpath"/>
+    <path refid="library.checkstyle.classpath"/>
+    <path refid="library.runtime.classpath"/>
+  </path>
+  
+  <path id="java-smt.runtime.module.classpath">
+    <pathelement location="${java-smt.testoutput.dir}"/>
+    <pathelement location="${java-smt.output.dir}"/>
+    <path refid="library.spotbugs.classpath"/>
+    <path refid="library.test.classpath"/>
+    <path refid="library.format-source.classpath"/>
+    <path refid="library.build.classpath"/>
+    <path refid="library.checkstyle.classpath"/>
+    <path refid="library.runtime.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.java-smt">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.java-smt">
+    <patternset refid="excluded.from.module.java-smt"/>
+  </patternset>
+  
+  <path id="java-smt.module.sourcepath">
+    <dirset dir="${module.java-smt.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.java-smt" depends="compile.module.java-smt.production,compile.module.java-smt.tests" description="Compile module java-smt"/>
+  
+  <target name="compile.module.java-smt.production" depends="register.custom.compilers" description="Compile module java-smt; production classes">
+    <mkdir dir="${java-smt.output.dir}"/>
+    <javac2 destdir="${java-smt.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.java-smt}/javac">
+      <compilerarg line="${compiler.args.java-smt}"/>
+      <bootclasspath refid="java-smt.module.bootclasspath"/>
+      <classpath refid="java-smt.module.production.classpath"/>
+      <src refid="java-smt.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.java-smt"/>
+    </javac2>
+    
+    <copy todir="${java-smt.output.dir}">
+      <fileset dir="${module.java-smt.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.java-smt.tests" depends="register.custom.compilers,compile.module.java-smt.production" description="compile module java-smt; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.java-smt" description="cleanup module">
+    <delete dir="${java-smt.output.dir}"/>
+    <delete dir="${java-smt.testoutput.dir}"/>
+  </target>
+</project>
